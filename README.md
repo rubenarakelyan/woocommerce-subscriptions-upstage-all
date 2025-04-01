@@ -1,4 +1,8 @@
 > IMPORTANT: This code is made available in the hope that it will be useful, but **without any warranty**. See the GNU General Public License included with the code for more details. Automattic or WooCommerce support services are also not available to assist with the use of this code.
+>
+> WARNING! This plugin will process automatic payments in staging mode for **all** subscriptions. Ensure this is what you're looking for. You most likely don't want this behaviour.
+>
+> This plugin is a fork of [woocommerce-subscriptions-upstage](https://github.com/woocommerce/woocommerce-subscriptions-upstage), which only acts on specific subscriptions.
 
 # WooCommerce Subscriptions Upstage
 
@@ -8,45 +12,21 @@ By default, when WooCommerce Subscriptions detects a change in a site's URL, it 
 
 On occasion, there is a need to process automatic payments on staging sites, generally for testing.
 
-This plugin can be used to trigger automatic payments for specific subscriptions when Subscriptions is in _Staging Mode_.
+This plugin can be used to trigger automatic payments for all subscriptions when Subscriptions is in _Staging Mode_.
 
 ## Usage
 
-1. Download the [latest version of the plugin](https://github.com/Prospress/woocommerce-subscriptions-upstage/archive/master.zip)
+1. Download the [latest version of the plugin](https://github.com/rubenarakelyan/woocommerce-subscriptions-upstage-all/archive/master.zip)
 1. [Install & activate](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins) the plugin
-1. Define a `WCS_UPSTAGED_SUBSCRIPTION_IDS` constant
-1. Set its value to a JSON encoded array of subscription IDs (`int`'s) - it needs to be JSON encoded to avoid `PHP Warning: Constants may only evaluate to scalar values errors`
 
-[Automatic renewal payments](https://docs.woocommerce.com/document/subscriptions/renewal-process/) will then be triggered for those subscription IDs.
-
-### Example Usage
-
-```
-define( 'WCS_UPSTAGED_SUBSCRIPTION_IDS', json_encode( array( 123, 5813, 2134 ) ) );
-```
-
-### Suggested Usage
-
-While the `WCS_UPSTAGED_SUBSCRIPTION_IDS` constant can be defined anywhere, your site's [`wp-config.php`](https://codex.wordpress.org/Editing_wp-config.php) file is often the best place for defining this type of constant.
+[Automatic renewal payments](https://docs.woocommerce.com/document/subscriptions/renewal-process/) will then be triggered for all subscriptions.
 
 ## Requirements
 
-The plugin will only trigger automatic payments when:
+The plugin will only trigger automatic payments when the site is in [_Staging Mode_](https://docs.woocommerce.com/document/subscriptions-handles-staging-sites/), it does nothing when the site is in _Live Mode_.
 
-* the site is in [_Staging Mode_](https://docs.woocommerce.com/document/subscriptions-handles-staging-sites/), it does nothing when the site is in _Live Mode_
-* a `WCS_UPSTAGED_SUBSCRIPTION_IDS` constant is defined
-* the `WCS_UPSTAGED_SUBSCRIPTION_IDS` constant is a JSON encoded array
-
-If those conditions are met, when a scheduled renewal event occurs for a subscription in the `WCS_UPSTAGED_SUBSCRIPTION_IDS` array, this plugin will trigger the [automatic renewal payment](https://docs.woocommerce.com/document/subscriptions/renewal-process/) process.
+When a scheduled renewal event occurs, this plugin will trigger the [automatic renewal payment](https://docs.woocommerce.com/document/subscriptions/renewal-process/) process.
 
 ## Reporting Issues
 
-If you find an problem or would like to request this plugin be extended, please [open a new Issue](https://github.com/Prospress/woocommerce-subscriptions-upstage/issues/new).
-
----
-
-<p align="center">
-	<a href="https://prospress.com/">
-		<img src="https://cloud.githubusercontent.com/assets/235523/11986380/bb6a0958-a983-11e5-8e9b-b9781d37c64a.png" width="160">
-	</a>
-</p>
+If you find an problem or would like to request this plugin be extended, please [open a new Issue](https://github.com/rubenarakelyan/woocommerce-subscriptions-upstage-all/issues/new).
