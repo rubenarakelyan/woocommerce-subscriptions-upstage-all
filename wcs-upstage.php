@@ -1,17 +1,18 @@
 <?php
 /**
- * Plugin Name: WooCommerce Subscriptions Upstage
- * Plugin URI: https://github.com/Prospress/woocommerce-subscriptions-upstage/
- * Description: Disable Staging Mode for specific subscriptions, as defined in a WCS_UPSTAGED_SUBSCRIPTION_IDS constant.
- * Author: Prospress Inc.
- * Author URI: http://prospress.com/
+ * Plugin Name: WooCommerce Subscriptions Upstage All
+ * Plugin URI: https://github.com/rubenarakelyan/woocommerce-subscriptions-upstage-all/
+ * Description: Disable Staging Mode for all subscriptions.
+ * Author: Prospress Inc. and Ruben Arakelyan
+ * Author URI: https://www.wackomenace.co.uk/
  * Version: 1.0
  * License: GPLv3
  *
- * GitHub Plugin URI: Prospress/woocommerce-subscriptions-upstage
+ * GitHub Plugin URI: rubenarakelyan/woocommerce-subscriptions-upstage-all
  * GitHub Branch: master
  *
  * Copyright 2017 Prospress, Inc.  (email : freedoms@prospress.com)
+ * Copyright 2025 Ruben Arakelyan  (email : ruben@arakelyan.uk)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +34,7 @@
 
 function wcs_upstage( $subscription_id ) {
 
-	if ( ! WCS_Staging::is_duplicate_site() || ! defined( 'WCS_UPSTAGED_SUBSCRIPTION_IDS' ) || ! is_array( $subscription_ids = json_decode( WCS_UPSTAGED_SUBSCRIPTION_IDS ) ) || ! in_array( $subscription_id, $subscription_ids ) ) {
+	if ( ! WCS_Staging::is_duplicate_site() ) {
 		return;
 	}
 
